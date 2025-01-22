@@ -1,14 +1,14 @@
 class CharacterModel {
-  int id;
-  String name;
-  String statusDeadOrAlive;
-  String species;
-  String speciesType;
-  String gender;
-  String image;
-  OriginModel origin;
-  LocationModel lastLocation;
-  List<dynamic> episodesAppearedIn;
+  final int id;
+  final String name;
+  final String statusDeadOrAlive;
+  final String species;
+  final String speciesType;
+  final String gender;
+  final String image;
+  final LocationModel? origin;
+  final LocationModel? lastLocation;
+  final List<dynamic> episodesAppearedIn;
 
   CharacterModel({
     required this.id,
@@ -31,45 +31,47 @@ class CharacterModel {
       speciesType: jsonData["type"],
       gender: jsonData["gender"],
       image: jsonData["image"],
-      origin: jsonData["id"],
-      lastLocation: jsonData["id"],
-      episodesAppearedIn: jsonData["episode"],
+      origin: jsonData["origin"] == null
+          ? null
+          : LocationModel.fromJson(jsonData["origin"]),
+      lastLocation: jsonData["location"] == null
+          ? null
+          : LocationModel.fromJson(jsonData["location"]),
+      episodesAppearedIn: jsonData["episode"] == null
+          ? []
+          : List<String>.from(jsonData["episode"]!.map((x) => x)),
     );
   }
-}
-
-class OriginModel {
-  String name;
-  String url;
-  OriginModel({
-    required this.name,
-    required this.url,
-  });
-
-  factory OriginModel.fromJson(Map<String, dynamic> jsonData) {
-    Map<String, dynamic> targetedData = jsonData["origin"];
-
-    return OriginModel(
-      name: targetedData['name'],
-      url: targetedData['url'],
-    );
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "status": statusDeadOrAlive,
+        "species": species,
+        "type": speciesType,
+        "gender": gender,
+        "origin": origin?.toJson(),
+        "location": lastLocation?.toJson(),
+        "image": image,
+        "episode": episodesAppearedIn.map((x) => x).toList(),
+      };
 }
 
 class LocationModel {
-  String name;
-  String url;
+  final String name;
+  final String url;
   LocationModel({
     required this.name,
     required this.url,
   });
 
   factory LocationModel.fromJson(Map<String, dynamic> jsonData) {
-    Map<String, dynamic> targetedData = jsonData["location"];
-
     return LocationModel(
-      name: targetedData['name'],
-      url: targetedData['url'],
+      name: jsonData['name'],
+      url: jsonData['url'],
     );
   }
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "url": url,
+      };
 }

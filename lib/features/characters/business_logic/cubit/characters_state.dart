@@ -8,3 +8,9 @@ abstract class CharactersState extends Equatable {
 }
 
 class CharactersInitial extends CharactersState {}
+
+class CharactersLoaded extends CharactersState {
+  final List<CharacterModel> characters;
+
+  const CharactersLoaded({required this.characters});
+}
