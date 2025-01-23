@@ -6,6 +6,7 @@ import 'package:flutter_series_app_bloc/features/characters/data/repositories/ch
 import 'package:flutter_series_app_bloc/features/characters/data/web_services/characters_web_services.dart';
 import 'package:flutter_series_app_bloc/features/characters/presentation/screens/character_details.dart';
 import 'package:flutter_series_app_bloc/features/characters/presentation/screens/characters_screen.dart';
+import 'package:flutter_series_app_bloc/features/characters/presentation/screens/error_screen.dart';
 
 class AppRouter {
   late CharactersRepository charactersRepository;
@@ -26,6 +27,8 @@ class AppRouter {
         );
       case characterDetailsScreen: // --> '/'
         return MaterialPageRoute(builder: (_) => const CharacterDetails());
+      default:
+        return MaterialPageRoute(builder: (_) => const ErrorScreen());
     }
   }
 }

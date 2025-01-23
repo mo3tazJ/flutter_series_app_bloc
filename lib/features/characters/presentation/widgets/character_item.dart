@@ -11,7 +11,7 @@ class CharacterItem extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-      padding: const EdgeInsetsDirectional.all(4),
+      padding: const EdgeInsetsDirectional.all(5),
       decoration: BoxDecoration(
         color: AppColors.myWhite,
         borderRadius: BorderRadius.circular(8),

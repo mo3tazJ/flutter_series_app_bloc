@@ -47,10 +47,13 @@ class _CharactersScreenState extends State<CharactersScreen> {
     return SingleChildScrollView(
       child: Container(
         color: AppColors.myGrey,
-        child: Column(
-          children: [
-            buidCharactersList(),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10, left: 2, right: 2),
+          child: Column(
+            children: [
+              buidCharactersList(),
+            ],
+          ),
         ),
       ),
     );
