@@ -1,3 +1,5 @@
+import "dart:developer";
+
 import "package:dio/dio.dart";
 import "package:flutter_series_app_bloc/core/constants/strings.dart";
 
@@ -13,14 +15,14 @@ class CharactersWebServices {
     dio = Dio(options);
   }
 
-  Future<List<dynamic>> getAllCharacters() async {
+  Future<Map<String, dynamic>> getAllCharacters() async {
     try {
       Response response = await dio.get("character");
-      print(response.data.toString());
+      // log(response.data.toString());
       return response.data;
     } catch (e) {
-      print(e.toString());
-      return [];
+      log(e.toString());
+      return {};
     }
   }
 }
